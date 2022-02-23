@@ -1,6 +1,6 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:audio/animals/cow.dart';
+import 'package:audio/animals/dog.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,57 +29,51 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  late AudioCache _audioPlayer;
-  late final AnimationController _controller;
+class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
-    _audioPlayer = AudioCache();
-    _controller = AnimationController(vsync: this);
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          MaterialButton(
-            onPressed: () {
-              _audioPlayer.play('dog.wav');
-            },
-            color: Colors.redAccent,
-            child: const Text('Dog'),
-          ),
-          const SizedBox(height: 20),
-          GestureDetector(
-            onTap: () {
-              _audioPlayer.play('cow.wav');
-              _controller
-                ..duration = const Duration(seconds: 2)
-                ..forward();
-            },
-            child: Lottie.asset(
-              'assets/cow_ani.json',
-              controller: _controller,
-              onLoaded: (composition) {
-                // Configure the AnimationController with the duration of the
-                // Lottie file and start the animation.
-                _controller
-                  ..duration = composition.duration
-                  ..forward();
+          Expanded(
+            child: MaterialButton(
+              minWidth: MediaQuery.of(context).size.width,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const CowPage()));
               },
+              color: const Color(0Xffdf9898),
+              child: const Text(
+                'Cow',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: MaterialButton(
+              minWidth: MediaQuery.of(context).size.width,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const DogPage()));
+              },
+              color: const Color(0Xff83d9ae),
+              child: const Text(
+                'Dog',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                ),
+              ),
             ),
           ),
         ],
