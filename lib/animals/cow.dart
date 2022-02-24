@@ -57,9 +57,12 @@ class _CowPageState extends State<CowPage> with SingleTickerProviderStateMixin {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.arrow_back_ios_new_rounded),
-        onPressed: () => Navigator.of(context).pop(),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: FloatingActionButton(
+          child: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
     );
