@@ -41,7 +41,8 @@ class _CowPageState extends State<CowPage> with SingleTickerProviderStateMixin {
         print('A stream error occurred: $e');
       }
     });
-    _player.setAudioSource(AudioSource.uri(Uri.parse('asset:///cow.wav')));
+    _player
+        .setAudioSource(AudioSource.uri(Uri.parse('asset:///assets/cow.wav')));
   }
 
   @override
@@ -61,8 +62,8 @@ class _CowPageState extends State<CowPage> with SingleTickerProviderStateMixin {
           children: <Widget>[
             GestureDetector(
               onTap: () {
+                _player.play();
                 _controller.forward();
-                // _audioPlayer.play('cow.wav');
               },
               child: Lottie.asset(
                 'assets/cow_ani.json',
@@ -71,7 +72,6 @@ class _CowPageState extends State<CowPage> with SingleTickerProviderStateMixin {
                   _controller.duration = composition.duration;
                   _controller.forward();
                   _player.play();
-                  // _audioPlayer.play('cow.wav');
                 },
               ),
             ),
